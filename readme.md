@@ -1,28 +1,8 @@
-# electron-app
+# Shorty
 
-> My super app
+> Cool electron app developed with react
 
-
-## Dev
-
-```
-$ npm install
-```
-
-### Run
-
-```
-$ npm start
-```
-
-### Build
-
-```
-$ npm run build
-```
-
-Builds the app for macOS, Linux, and Windows, using [electron-packager](https://github.com/electron-userland/electron-packager).
-
+**Note:**  This app is still in development
 
 ## License
 
