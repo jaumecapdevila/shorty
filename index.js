@@ -1,25 +1,61 @@
+/* eslint-disable func-names */
 const electron = require('electron');
 
 const app = electron.app;
 
-// prevent window being garbage collected
-let mainWindow;
+let tray;
 
-function onClosed() {
-  mainWindow = null;
-}
+const WindowManager = (function () {
+  let popup;
 
-function createMainWindow() {
-  const win = new electron.BrowserWindow({
-    width: 600,
-    height: 400,
-  });
+  const createPopupWindow = () => {
+    const popupWindow = new electron.BrowserWindow({
+      width: 300,
+      height: 350,
+      show: false,
+      frame: false,
+      resizable: false,
+    });
+    popupWindow.loadURL(`file://${__dirname}/public/index.html`);
+    popupWindow.on('blur', () => {
+      //popupWindow.hide();
+    });
+    popupWindow.hide();
+    return popupWindow;
+  };
+  const showPopupWindow = () => {
+    const trayPos = tray.getBounds();
+    const windowPos = popup.getBounds();
+    let x = 0;
+    let y = 0;
 
-  win.loadURL(`file://${__dirname}/public/index.html`);
-  win.on('closed', onClosed);
+    if (process.platform === 'darwin') {
+      x = Math.round(trayPos.x + (trayPos.width / 2) - (windowPos.width / 2));
+      y = Math.round(trayPos.y + trayPos.height);
+    } else {
+      x = Math.round(trayPos.x + (trayPos.width / 2) - (windowPos.width / 2));
+      y = Math.round(trayPos.y + trayPos.height * 10);
+    }
 
-  return win;
-}
+    popup.setPosition(x, y, false);
+    popup.show();
+    popup.focus();
+  };
+  return {
+    init: () => {
+      if (!popup) {
+        popup = createPopupWindow();
+      }
+    },
+    toggleWindow: () => {
+      if (popup.isVisible()) {
+        popup.hide();
+      } else {
+        showPopupWindow();
+      }
+    },
+  };
+}());
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -27,12 +63,10 @@ app.on('window-all-closed', () => {
   }
 });
 
-app.on('activate', () => {
-  if (!mainWindow) {
-    mainWindow = createMainWindow();
-  }
-});
-
 app.on('ready', () => {
-  mainWindow = createMainWindow();
+  tray = new electron.Tray('public/img/icon.png');
+  WindowManager.init();
+  tray.on('click', (event) => {
+    WindowManager.toggleWindow();
+  });
 });

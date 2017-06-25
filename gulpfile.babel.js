@@ -13,7 +13,7 @@ function lint(files, options) {
   return () => gulp.src(files).pipe($.eslint(options)).pipe($.eslint.format());
 }
 
-gulp.task('lint', lint('app/**/*.jsx', {
+gulp.task('lint', lint('app/assets/js/**/*.jsx', {
   env: {
     es6: true,
   },
@@ -24,23 +24,25 @@ gulp.task('lint', lint('app/**/*.jsx', {
 
 // Build and move the HTML to the public folder
 gulp.task('html', () =>
-  gulp.src('app/index.html').pipe(gulp.dest('./public')),
+  gulp.src('app/views/index.html').pipe(gulp.dest('./public')),
 );
 
 // Compress and move the images to the public folder
 gulp.task('images',
-  () => gulp.src('app/images/**/*').pipe($.if($.if.isFile, $.cache($.imagemin({
-    progressive: true,
-    interlaced: true,
-    svgoPlugins: [{ cleanupIDs: false }],
-  })).on('error', function (err) {
-    this.end();
-  }))).pipe(gulp.dest('public/images')));
+  () => gulp.src('app/assets/img/**/*').
+    pipe($.if($.if.isFile, $.cache($.imagemin({
+      progressive: true,
+      interlaced: true,
+      svgoPlugins: [{ cleanupIDs: false }],
+    })).on('error', function (err) {
+      this.end();
+    }))).
+    pipe(gulp.dest('public/img')));
 
 // Compile all the javascript files and move them to the public folder
 gulp.task('bundle', () => {
   return rollup({
-    entry: 'app/js/app.jsx',
+    entry: 'app/assets/js/app.jsx',
     sourceMap: false,
     plugins: [
       resolve({
@@ -73,7 +75,7 @@ gulp.task('bundle', () => {
       moduleName: 'main',
     });
   }).then(gen => {
-    return $.file('app.js', gen.code, { src: true }).
+    return $.file('shorty.js', gen.code, { src: true }).
       pipe(gulp.dest('public/js'));
   });
 });
@@ -86,11 +88,9 @@ gulp.task('watch', ['lint', 'bundle'], () => {
   $.livereload.listen();
 
   gulp.watch([
-    'app/*.html',
-    'app/**/*.jsx',
-    'app/**/*.js',
-    'app/images/**/*',
-    'app/scss/**/*.scss',
+    'app/views/*.html',
+    'app/assets/**/*.jsx',
+    'app/assets/sass/**/*.scss',
   ]).on('change', $.livereload.reload);
 
   gulp.watch('app/**/*.jsx', ['lint', 'bundle']);
@@ -98,7 +98,7 @@ gulp.task('watch', ['lint', 'bundle'], () => {
 
 // Compile and compress sass files
 gulp.task('sass', () =>
-  gulp.src('app/scss/app.scss').
+  gulp.src('app/assets/sass/shorty.scss').
     pipe($.sourcemaps.init()).
     pipe($.sass().on('error', $.sass.logError)).
     pipe($.sourcemaps.write()).

@@ -1,10 +1,10 @@
 {
-  "name": "electron-app",
-  "productName": "ElectronApp",
+  "name": "shorty",
+  "productName": "Shorty",
   "version": "1.0.0",
-  "description": "Spotify checker",
+  "description": "Cool shortcuts list for developers",
   "license": "MIT",
-  "repository": "jaumecapdevila/electron-app",
+  "repository": "jaumecapdevila/shorty",
   "author": {
     "name": "Jaume Capdevila Pérez",
     "email": "contact@jaumecapdevila.net",
@@ -12,7 +12,8 @@
   },
   "scripts": {
     "start": "electron .",
-    "build": "gulp && electron-packager public coolapp"
+    "build": "gulp && electron .",
+    "compile": "gulp && electron-packager public shorty"
   },
   "files": [
     "index.js",
@@ -23,6 +24,11 @@
     "electron-app",
     "electron"
   ],
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "electron": "~1.6.2"
+  },
   "devDependencies": {
     "babel-core": "^6.7.2",
     "babel-eslint": "^7.2.3",
@@ -31,7 +37,6 @@
     "babel-preset-es2015-rollup": "^3.0.0",
     "babel-preset-react": "^6.24.1",
     "del": "^2.2.0",
-    "electron": "~1.6.2",
     "electron-packager": "^8.7.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
@@ -78,9 +83,5 @@
         "single"
       ]
     }
-  },
-  "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
   }
 }

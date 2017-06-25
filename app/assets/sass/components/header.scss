@@ -1,0 +1,23 @@
+.header {
+  text-align: center;
+}
+
+.header__title {
+  font-size: 40px;
+  font-weight: 100;
+  margin: 0;
+  padding: 0;
+  color: $black;
+}
+
+.header__title {
+  font-size: 50px;
+  font-weight: 100;
+  margin: .5rem 0 0 0;
+  padding: 0;
+}
+
+.header__spacer {
+  border: 1px solid $grey;
+  margin: .5rem 10%;
+}
