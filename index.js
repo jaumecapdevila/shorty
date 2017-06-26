@@ -57,13 +57,11 @@ const WindowManager = (function () {
 }());
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+  app.quit();
 });
 
 app.on('ready', () => {
-  tray = new electron.Tray('public/img/icon.png');
+  tray = new electron.Tray('public/img/shorty.png');
   WindowManager.init();
   tray.on('click', (event) => {
     WindowManager.toggleWindow();

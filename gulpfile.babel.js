@@ -29,15 +29,13 @@ gulp.task('html', () =>
 
 // Compress and move the images to the public folder
 gulp.task('images',
-  () => gulp.src('app/assets/img/**/*').
-    pipe($.if($.if.isFile, $.cache($.imagemin({
-      progressive: true,
-      interlaced: true,
-      svgoPlugins: [{ cleanupIDs: false }],
-    })).on('error', function (err) {
-      this.end();
-    }))).
-    pipe(gulp.dest('public/img')));
+  () => gulp.src('app/assets/img/**/*').pipe($.if($.if.isFile, $.cache($.imagemin({
+    progressive: true,
+    interlaced: true,
+    svgoPlugins: [{ cleanupIDs: false }],
+  })).on('error', function(err) {
+    this.end();
+  }))).pipe(gulp.dest('public/img')));
 
 // Compile all the javascript files and move them to the public folder
 gulp.task('bundle', () => {
@@ -76,7 +74,7 @@ gulp.task('bundle', () => {
     });
   }).then(gen => {
     return $.file('shorty.js', gen.code, { src: true }).
-      pipe(gulp.dest('public/js'));
+    pipe(gulp.dest('public/js'));
   });
 });
 
@@ -85,24 +83,14 @@ gulp.task('clean', del.bind(null, ['.tmp', 'public']));
 
 // Watch for changes and execute some tasks
 gulp.task('watch', ['lint', 'bundle'], () => {
-  $.livereload.listen();
-
-  gulp.watch([
-    'app/views/*.html',
-    'app/assets/**/*.jsx',
-    'app/assets/sass/**/*.scss',
-  ]).on('change', $.livereload.reload);
-
-  gulp.watch('app/**/*.jsx', ['lint', 'bundle']);
+  gulp.watch('app/assets/js/**/*.js', ['lint', 'bundle']);
+  gulp.watch('app/views/**/*.html', ['html']);
+  gulp.watch('app/assets/sass/**/*.scss', ['sass']);
 });
 
 // Compile and compress sass files
 gulp.task('sass', () =>
-  gulp.src('app/assets/sass/shorty.scss').
-    pipe($.sourcemaps.init()).
-    pipe($.sass().on('error', $.sass.logError)).
-    pipe($.sourcemaps.write()).
-    pipe(gulp.dest('public/css')),
+  gulp.src('app/assets/sass/shorty.scss').pipe($.sourcemaps.init()).pipe($.sass().on('error', $.sass.logError)).pipe($.sourcemaps.write()).pipe(gulp.dest('public/css')),
 );
 
 // ZIP the public folder
@@ -120,3 +108,4 @@ gulp.task('build', () => {
 gulp.task('default', ['clean'], () => {
   runSequence('build');
 });
+

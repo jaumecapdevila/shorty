@@ -5,5 +5,5 @@ import FooterContainer from './containers/footer/footer.container.js';
 
 ReactDOM.render(
   <FooterContainer />,
-  document.getElementById('content'),
+  document.getElementById('footer'),
 );

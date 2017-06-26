@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '../../components/footer/footer.component.js';
+import FooterButton from '../../components/footer/footer.component.js';
 
 const electron = require('electron');
 
@@ -15,7 +15,7 @@ class FooterContainer extends React.Component {
   }
 
   render() {
-    return <Footer closeApp={this.closeApp} />;
+    return <FooterButton closeApp={this.closeApp} />;
   }
 }
 
