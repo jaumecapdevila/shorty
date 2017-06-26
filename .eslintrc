@@ -6,7 +6,34 @@
     "node": true
   },
   "rules": {
+    "no-use-before-define": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "import/no-extraneous-dependencies": 0,
     "id-length": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "react/jsx-no-bind": [
+      1,
+      {
+        "allowBind": true
+      }
+    ],
+    "react/prop-types": [
+      0,
+      {}
+    ],
+    "react/prefer-stateless-function": [
+      0,
+      {}
+    ],
     "indent": [
       1,
       2

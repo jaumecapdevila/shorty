@@ -13,7 +13,7 @@ function lint(files, options) {
   return () => gulp.src(files).pipe($.eslint(options)).pipe($.eslint.format());
 }
 
-gulp.task('lint', lint('app/assets/js/**/*.jsx', {
+gulp.task('lint', lint('app/assets/js/**/*.js', {
   env: {
     es6: true,
   },
@@ -42,7 +42,7 @@ gulp.task('images',
 // Compile all the javascript files and move them to the public folder
 gulp.task('bundle', () => {
   return rollup({
-    entry: 'app/assets/js/app.jsx',
+    entry: 'app/assets/js/app.js',
     sourceMap: false,
     plugins: [
       resolve({

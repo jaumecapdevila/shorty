@@ -1,4 +1,3 @@
-/* eslint-disable func-names */
 const electron = require('electron');
 
 const app = electron.app;

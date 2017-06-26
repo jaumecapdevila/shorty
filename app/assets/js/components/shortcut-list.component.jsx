@@ -1,17 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 const ShortcutsList = React.createClass({
   render() {
     return (
-      <ul>
+      <ol className="shortcut-list">
         {
           this.props.list.map(item => <li>{item}</li>)
         }
-      </ul>
+      </ol>
     );
   },
 });
-ReactDOM.render(<ShortcutsList list={['Git', 'npm']} />,
-  document.getElementById('content'),
-);
+
+export default ShortcutsList;
