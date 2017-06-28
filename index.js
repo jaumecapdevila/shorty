@@ -15,7 +15,7 @@ const WindowManager = (function () {
       frame: false,
       resizable: false,
     });
-    popupWindow.loadURL(`file://${__dirname}/public/index.html`);
+    popupWindow.loadURL(`file://${__dirname}/index.html`);
     popupWindow.on('blur', () => {
       //popupWindow.hide();
     });
