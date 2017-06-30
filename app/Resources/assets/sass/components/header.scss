@@ -3,21 +3,22 @@
 }
 
 .header__title {
-  font-size: 30px;
-  font-weight: 100;
-  margin: 0;
-  padding: 0;
-  color: $grey;
-}
-
-.header__title {
-  font-size: 50px;
+  font-size: 40px;
   font-weight: 100;
   margin: .5rem 0 0 0;
   padding: 0;
+  color: $grey;
 }
 
 .header__spacer {
   border: 1px solid $grey;
   margin: .25rem 12%;
+}
+
+.js-visible {
+  display: block;
+}
+
+.js-hidden {
+  display: none;
 }

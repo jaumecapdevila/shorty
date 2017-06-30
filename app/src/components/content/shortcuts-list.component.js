@@ -4,7 +4,7 @@ class ShortcutsList extends React.Component {
   render() {
     const shortcuts = [];
     const objectKeys = Object.keys(this.props.shortcutsList).map(item =>
-      shortcuts.push(this.props.shortcutsList),
+      shortcuts.push(this.props.shortcutsList[item]),
     );
     return (
       <ol className="shortcuts-list">

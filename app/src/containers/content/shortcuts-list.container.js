@@ -26,7 +26,7 @@ class ShortCutsListContainer extends React.Component {
   }
 
   render() {
-    return <ShortcutsList shortcutsList={this.state.shortcutsList}/>;
+    return <ShortcutsList shortcutsList={this.state.shortcutsList} />;
   }
 }
 
