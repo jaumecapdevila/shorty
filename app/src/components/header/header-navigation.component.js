@@ -6,10 +6,15 @@ class HeaderNavigation extends React.Component {
     return (
       <div className="header__nav">
         <NavigationButton toggleMenu={this.props.toggleMenu} />
-        <ol className={`nav__list js-${this.props.navigation.isActive ? 'visible' : 'hidden'}`}>
+        <ol className={`nav__list js-${this.props.navigation.isActive
+          ? 'visible'
+          : 'hidden'}`}
+        >
           <li>New group</li>
           <li>New shortcut</li>
-          <li>Close app</li>
+          <li>
+            <button href="#" onClick={this.props.closeApp}>Close app</button>
+          </li>
         </ol>
       </div>
     );

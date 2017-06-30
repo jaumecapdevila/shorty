@@ -12,11 +12,17 @@ class ShortCutsListContainer extends React.Component {
       'userData');
     this.path = path.join(userDataPath, 'shortcuts.json');
     this.state = {
-      shortcutsList: this.loadShortcuts(),
+      groupsList: this.loadGroups(),
+      shortcutsList: [
+        {
+          description: 'Description',
+          command: 'test command',
+        },
+      ],
     };
   }
 
-  loadShortcuts() {
+  loadGroups() {
     try {
       return JSON.parse(fs.readFileSync(this.path));
     } catch (error) {
@@ -26,7 +32,12 @@ class ShortCutsListContainer extends React.Component {
   }
 
   render() {
-    return <ShortcutsList shortcutsList={this.state.shortcutsList} />;
+    return (
+      <ShortcutsList
+        groupsList={this.state.groupsList}
+        shortcutsList={this.state.shortcutsList}
+      />
+    );
   }
 }
 
