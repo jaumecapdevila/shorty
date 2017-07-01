@@ -16,6 +16,8 @@
 }
 
 .shortcuts__list {
+  max-height: 150px;
+  overflow-y: scroll;
   .list__item {
     border-bottom: 1px solid #e6ebef;
     padding: .5rem 0;
