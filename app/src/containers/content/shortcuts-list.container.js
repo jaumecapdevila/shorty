@@ -11,14 +11,10 @@ class ShortCutsListContainer extends React.Component {
     const userDataPath = (electron.app || electron.remote.app).getPath(
       'userData');
     this.path = path.join(userDataPath, 'shortcuts.json');
+    this.loadShortcuts = this.loadShortcuts.bind(this);
     this.state = {
       groupsList: this.loadGroups(),
-      shortcutsList: [
-        {
-          description: 'Description',
-          command: 'test command',
-        },
-      ],
+      shortcutsList: [],
     };
   }
 
@@ -31,11 +27,25 @@ class ShortCutsListContainer extends React.Component {
     }
   }
 
+  loadShortcuts(event) {
+    const groupName = event.target.value;
+    let shortcuts = [];
+    Object.keys(this.state.groupsList).forEach((item) => {
+      if (this.state.groupsList[item].group === groupName) {
+        shortcuts = this.state.groupsList[item].shortcuts;
+      }
+    });
+    this.setState({
+      shortcutsList: shortcuts,
+    });
+  }
+
   render() {
     return (
       <ShortcutsList
         groupsList={this.state.groupsList}
         shortcutsList={this.state.shortcutsList}
+        loadShortcuts={this.loadShortcuts}
       />
     );
   }

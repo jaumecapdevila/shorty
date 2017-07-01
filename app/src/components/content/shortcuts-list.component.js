@@ -8,19 +8,32 @@ class ShortcutsList extends React.Component {
     const shortcuts = this.props.shortcutsList;
     return (
       <div className="className">
-        <select className="form-control" name="groups__list">
+        <select
+          className="form-control"
+          name="groups__list"
+          onChange={this.props.loadShortcuts}
+        >
           <option>Select a group</option>
           {
             groups.map(
               item => <option value={item.group}>{item.group}</option>)
           }
         </select>
-        <ol className="shortcuts__list">
+
+        <div className="shortcuts__container">
           {
-            shortcuts.map(
-              shortcut => <li>{shortcut.command}</li>)
+            shortcuts.length >= 1
+              ? <h2 className="list__title">Shortcuts</h2>
+              : ''
           }
-        </ol>
+          <ol className="shortcuts__list">
+            {
+              shortcuts.map(
+                shortcut => <li className="list__item">{shortcut.command}</li>,
+              )
+            }
+          </ol>
+        </div>
       </div>
     );
   }
