@@ -34,6 +34,7 @@ class ShortcutsList extends React.Component {
                   <li className="list__item">
                     <CopyToClipboard
                       text={shortcut.command}
+                      onCopy={this.props.showNotification}
                     >
                       <span>{shortcut.description}</span>
                     </CopyToClipboard>

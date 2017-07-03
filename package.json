@@ -23,6 +23,7 @@
     "clipboard": "^1.7.1",
     "electron": "~1.6.2",
     "node-fs": "^0.1.7",
+    "node-notifier": "^5.1.2",
     "path": "^0.12.7",
     "react": "^15.6.1",
     "react-copy-to-clipboard": "^5.0.0",

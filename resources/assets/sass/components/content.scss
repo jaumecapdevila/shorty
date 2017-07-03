@@ -20,7 +20,12 @@
   overflow-y: auto;
   .list__item {
     border-bottom: 1px solid #e6ebef;
-    padding: .5rem 0;
+    padding: .5rem;
+  }
+  .list__item:hover {
+    background-color: #565656;
+    color: #FFF;
+    cursor: pointer;
   }
   .list__item:first-child {
     border-top: 1px solid #e6ebef;

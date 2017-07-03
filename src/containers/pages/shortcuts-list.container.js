@@ -4,6 +4,7 @@ import ShortcutsList from '../../components/pages/shortcuts-list.component.js';
 const electron = require('electron');
 const path = require('path');
 const fs = require('fs');
+const notifier = require('node-notifier');
 
 class ShortCutsListContainer extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class ShortCutsListContainer extends React.Component {
       'userData');
     this.path = path.join(userDataPath, 'shortcuts.json');
     this.loadShortcuts = this.loadShortcuts.bind(this);
+    this.showNotification = this.showNotification.bind(this);
     this.state = {
       groupsList: this.loadGroups(),
       shortcutsList: [],
@@ -25,6 +27,18 @@ class ShortCutsListContainer extends React.Component {
       console.log(error);
       return {};
     }
+  }
+
+  showNotification() {
+    notifier.notify({
+      title: 'Shorty',
+      message: 'Command added to the clipboard!',
+      icon: path.join(__dirname, 'img', 'icon.png'), // Absolute path (doesn't work on balloons)
+      sound: false, // Only Notification Center or Windows Toasters
+      wait: false, // Wait with callback, until user action is taken against notification
+    }, (err, response) => {
+      console.log(err);
+    });
   }
 
   loadShortcuts(event) {
@@ -46,6 +60,7 @@ class ShortCutsListContainer extends React.Component {
         groupsList={this.state.groupsList}
         shortcutsList={this.state.shortcutsList}
         loadShortcuts={this.loadShortcuts}
+        showNotification={this.showNotification}
       />
     );
   }
