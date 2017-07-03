@@ -23,11 +23,57 @@
   display: none;
 }
 
-.header-menu__button {
+.buttons__container {
+  width: 90%;
+  margin: 1rem auto;
+  overflow: auto;
+}
+
+.action__button {
+  display: inline-block;
+  width: 48%;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: $green;
+  background-color: $white;
+  border-color: $green;
+}
+
+.action__button:first-child {
+  margin-right: 1%;
+}
+
+.action__button:last-child {
+  margin-left: 1%;
+}
+
+.action__button,
+.action__button:focus,
+.action__button:hover {
+  outline: none;
+}
+
+.close__button {
   position: absolute;
-  top: 15px;
-  right: 20px;
+  top: 0;
+  right: 10px;
   height: 20px;
-  width: 5px;
-  background-image: url(../img/menu.jpg);
+  width: 20px;
+  background-image: url(../img/close_button.jpg);
 }

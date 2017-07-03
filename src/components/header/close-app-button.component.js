@@ -1,14 +1,14 @@
 import React from 'react';
 
-class NavigationButton extends React.Component {
+class CloseAppButton extends React.Component {
   render() {
     return (
       <div
-        className="header-menu__button"
+        className="close__button"
         onClick={this.props.toggleMenu}
       ></div>
     );
   }
 }
 
-export default NavigationButton;
+export default CloseAppButton;

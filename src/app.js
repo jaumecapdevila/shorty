@@ -6,7 +6,7 @@ import HeaderContainer from './containers/header/header-container.js';
 
 ReactDOM.render(
   <HeaderContainer />,
-  document.querySelector('.navigation__container'),
+  document.getElementById('header'),
 );
 
 ReactDOM.render(

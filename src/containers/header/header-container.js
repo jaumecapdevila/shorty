@@ -1,5 +1,6 @@
 import React from 'react';
-import HeaderNavigation from '../../components/header/header-navigation.component.js';
+import Header from '../../components/header/header.component.js';
+
 
 const electron = require('electron');
 
@@ -31,9 +32,8 @@ class HeaderContainer extends React.Component {
 
   render() {
     return (
-      <HeaderNavigation
+      <Header
         navigation={this.state.navigation}
-        toggleMenu={this.toggleMenu}
         closeApp={this.closeApp}
       />
     );
