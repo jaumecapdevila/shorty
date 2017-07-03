@@ -13,7 +13,10 @@
   "scripts": {
     "start": "electron app/main.js",
     "build": "gulp",
-    "compile": "gulp && electron-packager app shorty"
+    "compileApp": "electron-packager app shorty --out=build --platform=all"
+  },
+  "bin": {
+    "electron-packager": "./bin/electron-packager"
   },
   "keywords": [
     "electron-app",
