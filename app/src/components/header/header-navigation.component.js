@@ -13,7 +13,7 @@ class HeaderNavigation extends React.Component {
           <li>New group</li>
           <li>New shortcut</li>
           <li>
-            <button href="#" onClick={this.props.closeApp}>Close app</button>
+            <a onClick={this.props.closeApp} href="#">Close app</a>
           </li>
         </ol>
       </div>

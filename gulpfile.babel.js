@@ -28,6 +28,12 @@ gulp.task('html', () =>
 );
 
 // Build and move the HTML to the public folder
+gulp.task('libs', () =>
+  gulp.src('app/Resources/assets/js/lib/**/*.js').
+    pipe(gulp.dest('./public/js/lib')),
+);
+
+// Build and move the HTML to the public folder
 gulp.task('electron', () =>
   gulp.src('index.js').pipe(gulp.dest('./public')),
 );
@@ -111,7 +117,7 @@ gulp.task('size',
 // Build all the project
 gulp.task('build', () => {
   runSequence(
-    'lint', 'bundle', ['html', 'sass', 'images'], 'electron',
+    'lint', 'bundle', ['html', 'sass', 'images', 'libs'], 'electron',
   );
 });
 

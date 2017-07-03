@@ -1,5 +1,5 @@
 import React from 'react';
-import ShortcutsList from '../../components/content/shortcuts-list.component.js';
+import ShortcutsList from '../../components/pages/shortcuts-list.component.js';
 
 const electron = require('electron');
 const path = require('path');
