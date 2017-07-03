@@ -11,15 +11,10 @@
     "url": "https:/jaumecapdevila.net"
   },
   "scripts": {
-    "start": "electron public",
-    "build": "gulp && electron .",
-    "compile": "gulp && electron-packager public shorty"
+    "start": "electron app/main.js",
+    "build": "gulp",
+    "compile": "gulp && electron-packager app shorty"
   },
-  "files": [
-    "index.js",
-    "index.html",
-    "index.css"
-  ],
   "keywords": [
     "electron-app",
     "electron"
@@ -31,7 +26,8 @@
     "path": "^0.12.7",
     "react": "^15.6.1",
     "react-copy-to-clipboard": "^5.0.0",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",

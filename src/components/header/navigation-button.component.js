@@ -3,12 +3,10 @@ import React from 'react';
 class NavigationButton extends React.Component {
   render() {
     return (
-      <button
+      <div
         className="header-menu__button"
         onClick={this.props.toggleMenu}
-      >
-        Menu
-      </button>
+      ></div>
     );
   }
 }

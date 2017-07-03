@@ -1,4 +1,5 @@
 const electron = require('electron');
+const path = require('path');
 
 const app = electron.app;
 
@@ -16,9 +17,6 @@ const WindowManager = (function () {
       resizable: false,
     });
     popupWindow.loadURL(`file://${__dirname}/index.html`);
-    popupWindow.on('blur', () => {
-      //popupWindow.hide();
-    });
     popupWindow.hide();
     return popupWindow;
   };
@@ -61,7 +59,7 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', () => {
-  tray = new electron.Tray('public/img/shorty.png');
+  tray = new electron.Tray(path.join(__dirname, 'img', 'icon.png'));
   WindowManager.init();
   tray.on('click', (event) => {
     WindowManager.toggleWindow();

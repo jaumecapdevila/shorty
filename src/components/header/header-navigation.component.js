@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationButton from '../../components/header/navigation-button.component.js';
+import NavigationButton from './navigation-button.component.js';
 
 class HeaderNavigation extends React.Component {
   render() {

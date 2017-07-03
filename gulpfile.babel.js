@@ -13,7 +13,7 @@ function lint(files, options) {
   return () => gulp.src(files).pipe($.eslint(options)).pipe($.eslint.format());
 }
 
-gulp.task('lint', lint('app/src/**/*.js', {
+gulp.task('lint', lint('src/**/*.js', {
   env: {
     es6: true,
   },
@@ -22,25 +22,20 @@ gulp.task('lint', lint('app/src/**/*.js', {
   },
 }));
 
-// Build and move the HTML to the public folder
+// Build and move the HTML to the app folder
 gulp.task('html', () =>
-  gulp.src('app/Resources/views/index.html').pipe(gulp.dest('./public')),
+  gulp.src('resources/views/index.html').pipe(gulp.dest('./app')),
 );
 
-// Build and move the HTML to the public folder
+// Build and move the HTML to the app folder
 gulp.task('libs', () =>
-  gulp.src('app/Resources/assets/js/lib/**/*.js').
-    pipe(gulp.dest('./public/js/lib')),
+  gulp.src('resources/assets/js/lib/**/*.js').
+    pipe(gulp.dest('./app/js/lib')),
 );
 
-// Build and move the HTML to the public folder
-gulp.task('electron', () =>
-  gulp.src('index.js').pipe(gulp.dest('./public')),
-);
-
-// Compress and move the images to the public folder
+// Compress and move the images to the app folder
 gulp.task('images',
-  () => gulp.src('app/Resources/assets/img/**/*').
+  () => gulp.src('resources/assets/img/**/*').
     pipe($.if($.if.isFile, $.cache($.imagemin({
       progressive: true,
       interlaced: true,
@@ -48,12 +43,12 @@ gulp.task('images',
     })).on('error', function (err) {
       this.end();
     }))).
-    pipe(gulp.dest('public/img')));
+    pipe(gulp.dest('app/img')));
 
-// Compile all the javascript files and move them to the public folder
+// Compile all the javascript files and move them to the app folder
 gulp.task('bundle', () => {
   return rollup({
-    entry: 'app/src/app.js',
+    entry: 'src/app.js',
     sourceMap: false,
     plugins: [
       resolve({
@@ -87,42 +82,38 @@ gulp.task('bundle', () => {
     });
   }).then(gen => {
     return $.file('shorty.js', gen.code, { src: true }).
-      pipe(gulp.dest('public/js'));
+      pipe(gulp.dest('app/js'));
   });
 });
 
-// Remove the public folder
-gulp.task('clean', del.bind(null, ['.tmp', 'public']));
+// Remove the app folder
+gulp.task('clean', del.bind(null, ['.tmp', 'app']));
 
 // Watch for changes and execute some tasks
 gulp.task('watch', ['lint', 'bundle'], () => {
-  gulp.watch('app/src/**/*.js', ['lint', 'bundle']);
-  gulp.watch('app/Resources/views/**/*.html', ['html']);
-  gulp.watch('app/Resources/assets/sass/**/*.scss', ['sass']);
+  gulp.watch('src/**/*.js', ['lint', 'bundle']);
+  gulp.watch('resources/views/**/*.html', ['html']);
+  gulp.watch('resources/assets/sass/**/*.scss', ['sass']);
 });
 
 // Compile and compress sass files
 gulp.task('sass', () =>
-  gulp.src('app/Resources/assets/sass/shorty.scss').
+  gulp.src('resources/assets/sass/shorty.scss').
     pipe($.sourcemaps.init()).
     pipe($.sass().on('error', $.sass.logError)).
     pipe($.sourcemaps.write()).
-    pipe(gulp.dest('public/css')),
+    pipe(gulp.dest('app/css')),
 );
 
-// ZIP the public folder
-gulp.task('size',
-  () => gulp.src('public/**/*').pipe($.size({ title: 'build', gzip: true })));
-
-// Build all the project
-gulp.task('build', () => {
-  runSequence(
-    'lint', 'bundle', ['html', 'sass', 'images', 'libs'], 'electron',
-  );
-});
+// Move the bootstrap file to the app folder
+gulp.task('electron', () =>
+  gulp.src('src/main.js').pipe(gulp.dest('./app')),
+);
 
 // Default gulp task
 gulp.task('default', ['clean'], () => {
-  runSequence('build');
+  runSequence(
+    'lint', 'bundle', ['html', 'sass', 'images', 'libs'], 'electron',
+  );
 });
 

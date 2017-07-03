@@ -22,3 +22,12 @@
 .js-hidden {
   display: none;
 }
+
+.header-menu__button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  height: 20px;
+  width: 5px;
+  background-image: url(../img/menu.jpg);
+}
