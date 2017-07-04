@@ -9,7 +9,7 @@ class Header extends React.Component {
         <h1 className="header__title">Shorty</h1>
         <hr className="header__spacer" />
         <CloseAppButton toggleMenu={this.props.closeApp} />
-        <ActionButtons />
+        <ActionButtons renderEditGroupsPage={this.props.renderEditGroupsPage} />
       </div>
     );
   }
