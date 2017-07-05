@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ProjectsForm extends React.Component {
+class GroupsForm extends React.Component {
   render() {
     return (
       <div className="groups__from">
@@ -12,4 +12,4 @@ class ProjectsForm extends React.Component {
   }
 }
 
-export default ProjectsForm;
+export default GroupsForm;

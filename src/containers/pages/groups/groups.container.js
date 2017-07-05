@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectsForm from '../../../components/pages/groups/edit-groups.component.js';
+import GroupsForm from '../../../components/pages/groups/groups-form.component.js';
 import HeaderContainer from '../../header/header.container.js';
 
 const electron = require('electron');
@@ -33,7 +33,7 @@ class GroupsContainer extends React.Component {
     return (
       <div>
         <HeaderContainer/>
-        <ProjectsForm />
+        <GroupsForm />
       </div>
     );
   }
