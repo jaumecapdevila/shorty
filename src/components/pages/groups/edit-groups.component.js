@@ -1,9 +1,10 @@
 import React from 'react';
+import ProjectsForm from './form-input.component';
 
 class EditGroups extends React.Component {
   render() {
     return (
-      <p>groups</p>
+      <ProjectsForm />
     );
   }
 }

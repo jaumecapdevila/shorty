@@ -1,12 +1,13 @@
 import React from 'react';
-import ShortcutsList from '../../../components/pages/home/shortcuts-list.component.js';
+import Home from '../../../components/pages/home/home.component.js';
+import HeaderContainer from '../../header/header.container.js';
 
 const electron = require('electron');
 const path = require('path');
 const fs = require('fs');
 const notifier = require('node-notifier');
 
-class ShortCutsListContainer extends React.Component {
+class HomeContainer extends React.Component {
   constructor(props) {
     super(props);
     const userDataPath = (electron.app || electron.remote.app).getPath(
@@ -56,14 +57,17 @@ class ShortCutsListContainer extends React.Component {
 
   render() {
     return (
-      <ShortcutsList
-        groupsList={this.state.groupsList}
-        shortcutsList={this.state.shortcutsList}
-        loadShortcuts={this.loadShortcuts}
-        showNotification={this.showNotification}
-      />
+      <div>
+        <HeaderContainer/>
+        <Home
+          groupsList={this.state.groupsList}
+          shortcutsList={this.state.shortcutsList}
+          loadShortcuts={this.loadShortcuts}
+          showNotification={this.showNotification}
+        />
+      </div>
     );
   }
 }
 
-export default ShortCutsListContainer;
+export default HomeContainer;

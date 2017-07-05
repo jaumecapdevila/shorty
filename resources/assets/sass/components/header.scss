@@ -2,12 +2,22 @@
   text-align: center;
 }
 
+.header__container {
+  text-align: center;
+}
+
 .header__title {
   font-size: 40px;
   font-weight: 100;
   margin: .5rem 0 0 0;
   padding: 0;
   color: $grey;
+  a,
+  a:hover,
+  a:focus {
+    color: $grey;
+    text-decoration: none;
+  }
 }
 
 .header__spacer {
@@ -50,9 +60,15 @@
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
-  color: $green;
+  color: $grey;
   background-color: $white;
-  border-color: $green;
+  border-color: $grey;
+  a,
+  a:hover,
+  a:focus {
+    color: $grey;
+    text-decoration: none;
+  }
 }
 
 .action__button:first-child {

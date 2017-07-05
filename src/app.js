@@ -1,15 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 
-import ShortcutsListContainer from './containers/pages/home/shortcuts-list.container.js';
-import HeaderContainer from './containers/header/header-container.js';
+import HomeContainer from './containers/pages/home/home.container.js';
+import GroupsContainer from './containers/pages/groups/groups.container.js';
 
-ReactDOM.render(
-  <HeaderContainer />,
-  document.getElementById('header'),
+const App = () => (
+  <HashRouter>
+    <div className="app">
+      <Switch>
+        <Route exact path="/" component={HomeContainer}/>
+        <Route path="/groups" component={GroupsContainer}/>
+      </Switch>
+    </div>
+  </HashRouter>
 );
 
-ReactDOM.render(
-  <ShortcutsListContainer />,
-  document.getElementById('content'),
-);
+ReactDOM.render((
+  App()
+), document.getElementById('root'));

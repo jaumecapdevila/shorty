@@ -1,20 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-class ActionButtons extends React.Component {
+class NavigationButtons extends React.Component {
   render() {
     return (
       <div className="buttons__container">
         <button
           type="button"
           className="action__button"
-          onClick={this.props.renderEditGroupsPage}
         >
-          Edit groups
+          <Link to="/groups">Edit Groups</Link>
         </button>
         <button
           type="button"
           className="action__button"
-          onClick={this.props.renderEditShortcutsPage}
         >
           Edit shortcuts
         </button>
@@ -23,4 +22,4 @@ class ActionButtons extends React.Component {
   }
 }
 
-export default ActionButtons;
+export default NavigationButtons;
