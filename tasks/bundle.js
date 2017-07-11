@@ -13,7 +13,7 @@ function lint(files, options) {
   return () => gulp.src(files).pipe($.eslint(options)).pipe($.eslint.format());
 }
 
-gulp.task('lint', lint('src/**/*.js', {
+gulp.task('lint', lint(['src/**/*.js', '!src/**/main.js'], {
   env: {
     es6: true,
   },

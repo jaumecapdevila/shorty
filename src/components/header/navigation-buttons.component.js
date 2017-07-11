@@ -9,13 +9,13 @@ class NavigationButtons extends React.Component {
           type="button"
           className="action__button"
         >
-          <Link to="/groups">Edit Groups</Link>
+          <Link to="/groups">Add group</Link>
         </button>
         <button
           type="button"
           className="action__button"
         >
-          Edit shortcuts
+          Add shortcut
         </button>
       </div>
     );

@@ -5,6 +5,7 @@ import HeaderContainer from '../../header/header.container.js';
 const electron = require('electron');
 const path = require('path');
 const notifier = require('node-notifier');
+const fs = require('fs');
 
 class GroupsContainer extends React.Component {
   constructor(props) {
@@ -14,10 +15,74 @@ class GroupsContainer extends React.Component {
     this.path = path.join(userDataPath, 'shortcuts.json');
     this.state = {
       groupsList: this.props.groupsList,
+      groupName: '',
+      errors: [],
+      className: 'js-valid',
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleChange(event) {
+    const groupName = event.target.value;
+    const errors = this.validateGroupName(groupName);
+    const className = (errors.length === 0) ? 'js-invalid' : 'js-invalid';
+    this.setState(
+      {
+        groupName,
+        errors,
+        className,
+      },
+    );
+  }
+
+  handleClick(event) {
+    const errors = this.validateGroupName(this.state.groupName);
+    if (errors.length === 0) {
+      try {
+        if (fs.existsSync(this.path) === false) {
+          fs.writeFile(this.path, JSON.stringify([]), 'utf8',
+            () => {});
+        }
+        const currentGroups = JSON.parse(fs.readFileSync(this.path, 'utf8'));
+        const newGroup = {
+          group: this.state.groupName,
+          shortcuts: [],
+        };
+        currentGroups.push(newGroup);
+        fs.writeFile(this.path, JSON.stringify(currentGroups), 'utf8',
+          this.showGroupNotification.bind(this));
+      } catch (error) {
+      }
+    }
+  }
+
+  validateGroupName(name) {
+    const errors = [];
+    const regex = new RegExp(/^[a-zA-Z0-9]*$/, 'ig');
+    if (name.match(regex) === null) {
+      errors.push({
+        index: 'regex',
+        description: 'Only alphanumerical characters',
+      });
+    }
+    if (name.length > 20) {
+      errors.push({
+        index: 'length',
+        description: 'Max length: 20',
+      });
+    }
+    if (name === '') {
+      errors.push({
+        index: 'empty',
+        description: 'Name can not be empty',
+      });
+    }
+    return errors;
   }
 
   showGroupNotification() {
+    this.setState({ groupName: '' });
     notifier.notify({
       title: 'Shorty',
       message: 'New group added!',
@@ -33,7 +98,13 @@ class GroupsContainer extends React.Component {
     return (
       <div>
         <HeaderContainer/>
-        <GroupsForm />
+        <GroupsForm
+          groupName={this.state.groupName}
+          className={this.state.className}
+          errors={this.state.errors}
+          handleChange={this.handleChange}
+          handleClick={this.handleClick}
+        />
       </div>
     );
   }

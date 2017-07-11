@@ -1,6 +1,17 @@
 .groups__from {
   width: 90%;
   margin: 0 auto;
+  .form__container:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .errors__list {
+    display: block;
+    .error {
+      color: $red;
+    }
+  }
   .form__title {
     font-size: 20px;
     font-weight: 100;
@@ -40,4 +51,16 @@
     margin-left: 2%;
     float: left;
   }
+  .add-project__button:focus,
+  .add-project__button:hover {
+    outline: none;
+  }
+}
+
+.js-valid {
+  border-color: $formGrey;
+}
+
+.js-invalid {
+  border-color: $red;
 }

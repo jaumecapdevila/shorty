@@ -23,9 +23,12 @@ class HomeContainer extends React.Component {
 
   loadGroups() {
     try {
+      if (fs.existsSync(this.path) === false) {
+        fs.writeFile(this.path, JSON.stringify([]), 'utf8',
+          () => {});
+      }
       return JSON.parse(fs.readFileSync(this.path));
     } catch (error) {
-      console.log(error);
       return {};
     }
   }
