@@ -11,6 +11,8 @@
     "import/extensions": 0,
     "import/no-extraneous-dependencies": 0,
     "id-length": 0,
+    "class-methods-use-this": 0,
+    "react/jsx-tag-spacing": 0,
     "react/jsx-filename-extension": [
       1,
       {

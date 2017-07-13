@@ -1,0 +1,95 @@
+.header {
+  text-align: center;
+}
+
+.header__container {
+  text-align: center;
+}
+
+.header__title {
+  font-size: 40px;
+  font-weight: 100;
+  margin: .5rem 0 0 0;
+  padding: 0;
+  color: $grey;
+  a,
+  a:hover,
+  a:focus {
+    color: $grey;
+    text-decoration: none;
+  }
+}
+
+.header__spacer {
+  border: 1px solid $grey;
+  margin: 0.15rem 25%;
+}
+
+.js-visible {
+  display: block;
+}
+
+.js-hidden {
+  display: none;
+}
+
+.buttons__container {
+  width: 90%;
+  margin: 1rem auto;
+  overflow: auto;
+}
+
+.action__button {
+  display: inline-block;
+  width: 48%;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: $grey;
+  background-color: $white;
+  border-color: $grey;
+  a,
+  a:hover,
+  a:focus {
+    color: $grey;
+    text-decoration: none;
+  }
+}
+
+.action__button:first-child {
+  margin-right: 1%;
+}
+
+.action__button:last-child {
+  margin-left: 1%;
+}
+
+.action__button,
+.action__button:focus,
+.action__button:hover {
+  outline: none;
+}
+
+.close__button {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  height: 20px;
+  width: 20px;
+  background-image: url(../img/close_button.jpg);
+}

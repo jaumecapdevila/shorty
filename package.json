@@ -11,23 +11,27 @@
     "url": "https:/jaumecapdevila.net"
   },
   "scripts": {
-    "start": "electron .",
-    "build": "gulp && electron .",
-    "compile": "gulp && electron-packager public shorty"
+    "start": "electron app/main.js",
+    "build": "gulp",
+    "compileApp": "electron-packager app shorty --out=build --platform=all"
   },
-  "files": [
-    "index.js",
-    "index.html",
-    "index.css"
-  ],
+  "bin": {
+    "electron-packager": "./bin/electron-packager"
+  },
   "keywords": [
     "electron-app",
     "electron"
   ],
   "dependencies": {
+    "clipboard": "^1.7.1",
+    "electron": "~1.6.2",
+    "node-fs": "^0.1.7",
+    "node-notifier": "^5.1.2",
+    "path": "^0.12.7",
     "react": "^15.6.1",
+    "react-copy-to-clipboard": "^5.0.0",
     "react-dom": "^15.6.1",
-    "electron": "~1.6.2"
+    "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",

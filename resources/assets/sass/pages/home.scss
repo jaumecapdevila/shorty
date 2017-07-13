@@ -1,0 +1,33 @@
+.main,
+.content {
+}
+
+.shortcuts__container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.list__title {
+  font-size: 20px;
+  font-weight: 100;
+  margin: .5rem 0 0 0;
+  padding: 0;
+  color: $grey;
+}
+
+.shortcuts__list {
+  max-height: 150px;
+  overflow-y: auto;
+  .list__item {
+    border-bottom: 1px solid #e6ebef;
+    padding: .5rem;
+  }
+  .list__item:hover {
+    background-color: #565656;
+    color: #FFF;
+    cursor: pointer;
+  }
+  .list__item:first-child {
+    border-top: 1px solid #e6ebef;
+  }
+}

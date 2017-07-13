@@ -1,0 +1,66 @@
+.groups__form {
+  width: 90%;
+  margin: 0 auto;
+  .form__container:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .errors__list {
+    display: block;
+    .error {
+      color: $red;
+    }
+  }
+  .form__title {
+    font-size: 20px;
+    font-weight: 100;
+    margin: .5rem 0 0 0;
+    padding: 0;
+    color: $grey;
+  }
+  .groups__input {
+    width: 78%;
+    float: left;
+  }
+  .add-project__button {
+    display: inline-block;
+    width: 20%;
+    padding: .25rem;
+    height: 30px;
+    margin: .5rem auto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: $green;
+    background-color: $white;
+    border-color: $green;
+    margin-left: 2%;
+    float: left;
+  }
+  .add-project__button:focus,
+  .add-project__button:hover {
+    outline: none;
+  }
+}
+
+.js-valid {
+  border-color: $formGrey;
+}
+
+.js-invalid {
+  border-color: $red;
+}
