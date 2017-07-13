@@ -5,8 +5,8 @@ class Home extends React.Component {
   render() {
     return (
       <ShortcutsList
-        groupsList={this.props.groupsList}
-        shortcutsList={this.props.shortcutsList}
+        groups={this.props.groups}
+        shortcuts={this.props.shortcuts}
         loadShortcuts={this.props.loadShortcuts}
         showNotification={this.props.showNotification}
       />

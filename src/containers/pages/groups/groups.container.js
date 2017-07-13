@@ -52,7 +52,9 @@ class GroupsContainer extends React.Component {
               `The group ${this.state.groupName} already exists`);
           }
         });
+        const nextId = currentGroups.length + 1;
         const newGroup = {
+          id: nextId,
           name: this.state.groupName,
           shortcuts: [],
         };

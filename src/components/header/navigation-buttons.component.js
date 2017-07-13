@@ -15,7 +15,7 @@ class NavigationButtons extends React.Component {
           type="button"
           className="action__button"
         >
-          Add shortcut
+          <Link to="/shortcuts">Add shortcut</Link>
         </button>
       </div>
     );

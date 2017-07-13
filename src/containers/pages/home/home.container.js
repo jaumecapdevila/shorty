@@ -16,8 +16,8 @@ class HomeContainer extends React.Component {
     this.loadShortcuts = this.loadShortcuts.bind(this);
     this.showNotification = this.showNotification.bind(this);
     this.state = {
-      groupsList: this.loadGroups(),
-      shortcutsList: [],
+      groups: this.loadGroups(),
+      shortcuts: [],
     };
   }
 
@@ -29,7 +29,7 @@ class HomeContainer extends React.Component {
       }
       return JSON.parse(fs.readFileSync(this.path));
     } catch (error) {
-      return {};
+      return [];
     }
   }
 
@@ -48,13 +48,13 @@ class HomeContainer extends React.Component {
   loadShortcuts(event) {
     const groupName = event.target.value;
     let shortcuts = [];
-    Object.keys(this.state.groupsList).forEach((item) => {
-      if (this.state.groupsList[item].group === groupName) {
-        shortcuts = this.state.groupsList[item].shortcuts;
+    Object.keys(this.state.groups).forEach((item) => {
+      if (this.state.groups[item].name === groupName) {
+        shortcuts = this.state.groups[item].shortcuts;
       }
     });
     this.setState({
-      shortcutsList: shortcuts,
+      shortcuts,
     });
   }
 
@@ -63,8 +63,8 @@ class HomeContainer extends React.Component {
       <div>
         <HeaderContainer/>
         <Home
-          groupsList={this.state.groupsList}
-          shortcutsList={this.state.shortcutsList}
+          groups={this.state.groups}
+          shortcuts={this.state.shortcuts}
           loadShortcuts={this.loadShortcuts}
           showNotification={this.showNotification}
         />

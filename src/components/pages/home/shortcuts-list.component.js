@@ -3,10 +3,6 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 
 class ShortcutsList extends React.Component {
   render() {
-    const groups = Object.keys(this.props.groupsList).map(item =>
-      this.props.groupsList[item],
-    );
-    const shortcuts = this.props.shortcutsList;
     return (
       <div className="className">
         <select
@@ -16,30 +12,38 @@ class ShortcutsList extends React.Component {
         >
           <option>Select a group</option>
           {
-            groups.map(
-              item => <option value={item.group}>{item.group}</option>)
-          }
+            this.props.groups.map((group, index) => (
+              <option
+                key={group.id}
+                value={group.name}
+              >
+                {group.name}
+              </option>
+            ))}
         </select>
 
         <div className="shortcuts__container">
           {
-            shortcuts.length >= 1
+            this.props.shortcuts.length >= 1
               ? <h2 className="list__title">Shortcuts</h2>
               : null
           }
           <ol className="shortcuts__list">
             {
-              shortcuts.map(
-                shortcut =>
-                  <li className="list__item">
+              this.props.shortcuts.map(
+                shortcut => (
+                  <li
+                    key={shortcut.id}
+                    className="list__item"
+                  >
                     <CopyToClipboard
                       text={shortcut.command}
                       onCopy={this.props.showNotification}
                     >
-                      <span>{shortcut.description}</span>
+                      <span>{shortcut.alias}</span>
                     </CopyToClipboard>
-                  </li>,
-              )
+                  </li>
+                ))
             }
           </ol>
         </div>
