@@ -3,7 +3,7 @@ import React from 'react';
 class GroupsForm extends React.Component {
   render() {
     return (
-      <div className="groups__from">
+      <div className="groups__form">
         <div className="form__container">
           <h2 className="form__title">Add a new group</h2>
           <input

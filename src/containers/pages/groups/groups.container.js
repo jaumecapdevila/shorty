@@ -1,6 +1,7 @@
 import React from 'react';
 import GroupsForm from '../../../components/pages/groups/groups-form.component.js';
 import HeaderContainer from '../../header/header.container.js';
+import AlreadyExistentException from './exceptions/already-existent-group.exception.js';
 
 const electron = require('electron');
 const path = require('path');
@@ -26,7 +27,7 @@ class GroupsContainer extends React.Component {
   handleChange(event) {
     const groupName = event.target.value;
     const errors = this.validateGroupName(groupName);
-    const className = (errors.length === 0) ? 'js-invalid' : 'js-invalid';
+    const className = (errors.length === 0) ? 'js-valid' : 'js-invalid';
     this.setState(
       {
         groupName,
@@ -45,14 +46,28 @@ class GroupsContainer extends React.Component {
             () => {});
         }
         const currentGroups = JSON.parse(fs.readFileSync(this.path, 'utf8'));
+        currentGroups.forEach((group, index) => {
+          if (group.name === this.state.groupName) {
+            throw new AlreadyExistentException(
+              `The group ${this.state.groupName} already exists`);
+          }
+        });
         const newGroup = {
-          group: this.state.groupName,
+          name: this.state.groupName,
           shortcuts: [],
         };
         currentGroups.push(newGroup);
         fs.writeFile(this.path, JSON.stringify(currentGroups), 'utf8',
           this.showGroupNotification.bind(this));
-      } catch (error) {
+      } catch (exception) {
+        this.setState({
+          errors: [
+            {
+              key: 'group',
+              description: exception.getMessage(),
+            },
+          ],
+        });
       }
     }
   }
